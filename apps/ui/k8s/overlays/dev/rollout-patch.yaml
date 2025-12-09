@@ -11,10 +11,10 @@ spec:
   template:
     metadata:
       labels:
-        version: new
+        version: old
     spec:
       containers:
         - name: argo-roll-test
-          image: ayoobki/argo-roll-test:new
+          image: ayoobki/argo-roll-test:old
           ports:
             - containerPort: 6000
