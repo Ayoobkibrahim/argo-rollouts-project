@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: argo-roll-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: argo-roll-test
+  template:
+    metadata:
+      labels:
+        app: argo-roll-test
+        version: old
+    spec:
+      containers:
+        - name: argo-roll-test
+          image: argo-roll-test:old
+          ports:
+            - containerPort: 6000

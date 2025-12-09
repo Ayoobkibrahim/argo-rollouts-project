@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: argo-roll-test
+spec:
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: {duration: 10}
+        - setWeight: 50
+        - pause: {duration: 20}
+      trafficRouting:
+        istio:
+          virtualService:
+            name: argo-roll-test-virtualservice
+            routes:
+              - primary
+  template:
+    metadata:
+      labels:
+        version: new
+    spec:
+      containers:
+        - name: argo-roll-test
+          image: argo-roll-test:new
+          ports:
+            - containerPort: 6000

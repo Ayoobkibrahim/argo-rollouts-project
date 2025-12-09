@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: argo-roll-test
+spec:
+  host: argo-roll-test
+  subsets:
+    - name: old
+      labels:
+        version: old
+    - name: new
+      labels:
+        version: new

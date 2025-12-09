@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: argo-roll-test
+spec:
+  strategy:
+    blueGreen:
+      activeService: argo-roll-test
+      previewService: argo-roll-test-preview
+      autoPromotionEnabled: false
+  template:
+    metadata:
+      labels:
+        version: new
+    spec:
+      containers:
+        - name: argo-roll-test
+          image: argo-roll-test:new
+          ports:
+            - containerPort: 6000
