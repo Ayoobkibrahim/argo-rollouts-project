@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prod-Canary
+  name: prod-canary
   namespace: argocd
 spec:
   project: default
