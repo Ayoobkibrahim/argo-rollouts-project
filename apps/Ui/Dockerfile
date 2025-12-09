@@ -1,8 +1,6 @@
 FROM nginx:alpine
 
-RUN rm /etc/nginx/conf.d/default.conf
-
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN sed -i 's/listen       80;/listen       6000;/' /etc/nginx/conf.d/default.conf
 
 RUN rm -rf /usr/share/nginx/html/*
 
