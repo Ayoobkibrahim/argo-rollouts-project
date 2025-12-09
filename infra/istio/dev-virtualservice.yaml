@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: argo-roll-test-virtualservice-dev
+  namespace: dev
+spec:
+  hosts:
+    - "bluegreen-dev.local"
+  gateways:
+    - istio-system/argo-rollouts-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: argo-roll-test
+            port:
+              number: 80

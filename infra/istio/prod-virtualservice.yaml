@@ -5,15 +5,22 @@ metadata:
   namespace: prod
 spec:
   hosts:
-    - "*"
+    - "canary.prod.local"
   gateways:
-    - istio-system/ingressgateway
+    - istio-system/istio-ingressgateway
   http:
     - name: primary
+      match:
+        - uri:
+            prefix: /
       route:
         - destination:
             host: argo-roll-test
+            port:
+              number: 80
           weight: 100
         - destination:
             host: argo-roll-test-preview
+            port:
+              number: 80
           weight: 0
