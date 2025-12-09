@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: argo-roll-test
-          image: argo-roll-test:new
+          image: ayoobki/argo-roll-test:new
           ports:
             - containerPort: 6000
