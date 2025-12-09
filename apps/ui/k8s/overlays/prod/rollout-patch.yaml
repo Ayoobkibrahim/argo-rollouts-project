@@ -3,22 +3,30 @@ kind: Rollout
 metadata:
   name: argo-roll-test
 spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: argo-roll-test
   strategy:
     canary:
-      steps:
-        - setWeight: 20
-        - pause: {duration: 10}
-        - setWeight: 50
-        - pause: {duration: 20}
+      stableService: argo-roll-test
+      canaryService: argo-roll-test-preview
       trafficRouting:
         istio:
           virtualService:
             name: argo-roll-test-virtualservice
             routes:
               - primary
+      steps:
+        - setWeight: 20
+        - pause: {duration: 10}
+        - setWeight: 50
+        - pause: {duration: 20}
+
   template:
     metadata:
       labels:
+        app: argo-roll-test
         version: new
     spec:
       containers:

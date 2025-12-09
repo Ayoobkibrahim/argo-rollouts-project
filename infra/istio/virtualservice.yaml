@@ -12,9 +12,7 @@ spec:
       route:
         - destination:
             host: argo-roll-test
-            subset: old
           weight: 100
         - destination:
-            host: argo-roll-test
-            subset: new
+            host: argo-roll-test-preview
           weight: 0
