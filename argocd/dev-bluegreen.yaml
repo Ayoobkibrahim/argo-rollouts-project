@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Ayoobkibrahim/argo-rollouts-project.git
     path: apps/ui/k8s/overlays/dev
-    targetRevision: HEAD
+    targetRevision: HEAD  
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
