@@ -12,5 +12,5 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "bluegreen.dev.local"
-        - "canary.prod.local"
+        - "bluegreen-dev.local"
+        - "canary-prod.local"
