@@ -7,12 +7,9 @@ spec:
   hosts:
     - "canary.prod.local"
   gateways:
-    - istio-system/istio-ingressgateway
+    - istio-system/argo-rollouts-gateway
   http:
     - name: primary
-      match:
-        - uri:
-            prefix: /
       route:
         - destination:
             host: argo-roll-test
