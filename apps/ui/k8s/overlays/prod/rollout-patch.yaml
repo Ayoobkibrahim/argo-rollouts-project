@@ -27,10 +27,10 @@ spec:
     metadata:
       labels:
         app: argo-roll-test
-        version: old
+        version: new
     spec:
       containers:
         - name: argo-roll-test
-          image: ayoobki/argo-roll-test:old
+          image: ayoobki/argo-roll-test:new
           ports:
             - containerPort: 6000
