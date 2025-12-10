@@ -4,16 +4,29 @@ metadata:
   name: argo-roll-test-virtualservice-dev
   namespace: dev
 spec:
-  hosts:
-    - "bluegreen-dev.local"
   gateways:
-    - istio-system/argo-rollouts-gateway
+  - istio-system/argo-rollouts-gateway
+  hosts:
+  - bluegreen-dev.local
   http:
-    - match:
-        - uri:
-            prefix: /
-      route:
-        - destination:
-            host: argo-roll-test
-            port:
-              number: 80
+  - name: primary
+    match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: argo-roll-test
+        port:
+          number: 80
+      weight: 100
+
+  - name: preview
+    match:
+    - headers:
+        x-preview:
+          exact: "true"
+    route:
+    - destination:
+        host: argo-roll-test-preview
+        port:
+          number: 80

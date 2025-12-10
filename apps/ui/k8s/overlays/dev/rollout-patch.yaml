@@ -3,18 +3,23 @@ kind: Rollout
 metadata:
   name: argo-roll-test
 spec:
+  replicas: 2
   strategy:
     blueGreen:
       activeService: argo-roll-test
       previewService: argo-roll-test-preview
       autoPromotionEnabled: false
+  selector:
+    matchLabels:
+      app: argo-roll-test
   template:
     metadata:
       labels:
-        version: old
+        app: argo-roll-test
+        version: new 
     spec:
       containers:
         - name: argo-roll-test
-          image: ayoobki/argo-roll-test:old
+          image: ayoobki/argo-roll-test:new  
           ports:
             - containerPort: 6000
